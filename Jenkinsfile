@@ -13,8 +13,6 @@ pipeline {
                         sh "curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash"
                         sh "source ~/.bashrc"
                         sh "nvm install 14.18.1" // Встановлюємо конкретну версію Node.js
-                        sh "node -v" // Перевірка версії Node.js
-                        sh "npm -v" // Перевірка версії npm
                     }
                 }
             }

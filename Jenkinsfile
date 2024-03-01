@@ -28,7 +28,7 @@ pipeline {
         stage('BUILD') {
             steps {
                 echo '--BUILD STAGE EXECUTION --'
-                sh "node $(pwd) index.js"
+                sh "node \$(pwd) index.js"
             }
         }
         stage('DEPLOY') {

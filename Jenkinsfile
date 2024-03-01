@@ -4,7 +4,7 @@ pipeline {
         stage('DELETION') { 
             steps {
                 echo '--REMOVING REPOSITORY IF ALREADY EXIST --'
-                sh "sudo rm -rf devops_HelloWorld_jenk"
+                sh "sudo rm -rf HW_Jenk"
             }
         }
        stage('CLONE') { 
@@ -26,7 +26,7 @@ pipeline {
         stage('BUILD') { 
             steps {
     echo '--BUILD STAGE EXECUTION --'
-    sh "node devops_HelloWorld_jenk/index.js"
+    sh "node HW_Jenk/index.js"
             }
         }
   stage('DEPLOY') { 

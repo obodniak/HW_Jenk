@@ -8,11 +8,11 @@ pipeline {
             steps {
                 echo '--ВСТАНОВЛЕННЯ NODE.JS ЗА ДОПОМОГОЮ NVM--'
                 sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
-                sh 'export NVM_DIR="$HOME/.nvm"'
-                sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'
-                sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
-                sh "nvm install ${NODE_VERSION}"
-                sh "nvm use ${NODE_VERSION}"
+                sh 'export NVM_DIR="\$HOME/.nvm"'
+                sh '[ -s "\$NVM_DIR/nvm.sh" ] && \. "\$NVM_DIR/nvm.sh"  # This loads nvm'
+                sh '[ -s "\$NVM_DIR/bash_completion" ] && \. "\$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
+                sh "nvm install \${NODE_VERSION}"
+                sh "nvm use \${NODE_VERSION}"
             }
         }
         stage('DELETION') {

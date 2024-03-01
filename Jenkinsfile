@@ -1,37 +1,53 @@
 pipeline {
     agent any 
+    environment {
+        NODE_VERSION = '14.17.0' // Задайте потрібну версію Node.js
+    }
     stages {
-        stage('DELETION') { 
+        stage('Setup') {
             steps {
-                echo '--REMOVING REPOSITORY IF ALREADY EXIST --'
+                echo '--ВСТАНОВЛЕННЯ NODE.JS ЗА ДОПОМОГОЮ NVM--'
+                sh 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash'
+                sh 'export NVM_DIR="$HOME/.nvm"'
+                sh '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm'
+                sh '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
+                sh "nvm install ${NODE_VERSION}"
+                sh "nvm use ${NODE_VERSION}"
+            }
+        }
+        stage('DELETION') {
+            steps {
+                echo '--ВИДАЛЕННЯ РЕПОЗИТОРІЮ ЯКЩО ВІН ВЖЕ ІСНУЄ --'
                 sh "sudo rm -rf HW_Jenk"
             }
         }
         stage('CLONE') {
             steps {
-                echo '--CLONE STAGE EXECUTION ---'
-                sh "git clone https://github.com/obodniak/HW_Jenk.git"
+                echo '--ВИКОНАННЯ ЕТАПУ КЛОНУВАННЯ ---'
+                dir('HW_Jenk') {
+                    sh "git clone https://github.com/obodniak/HW_Jenk.git ."
+                }
             }
         }
         stage('TEST1') {
             steps {
-                echo '--TEST1 STAGE EXECUTION --'
+                echo '--ВИКОНАННЯ ЕТАПУ ТЕСТУВАННЯ 1 --'
             }
         }
         stage('TEST2') {
             steps {
-                echo '--TEST2 STAGE EXECUTION --'
+                echo '--ВИКОНАННЯ ЕТАПУ ТЕСТУВАННЯ 2 --'
             }
         }
         stage('BUILD') {
             steps {
-                echo '--BUILD STAGE EXECUTION --'
+                echo '--ВИКОНАННЯ ЕТАПУ ПОБУДОВИ --'
                 sh "node HW_Jenk/index.js"
             }
         }
         stage('DEPLOY') {
             steps {
-                echo '--Finish this PART or deploy app--'
+                echo '--ЗАВЕРШЕННЯ ЦЬОГО ЕТАПУ АБО РОЗГОРТАННЯ ДОДАТКУ--'
             }
         }
     }

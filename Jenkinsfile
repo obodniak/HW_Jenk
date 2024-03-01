@@ -10,7 +10,7 @@ pipeline {
        stage('CLONE') { 
             steps {
                 echo '--CLONE STAGE EXECUTION ---'
-    sh "git clone https://github.com/mentorchita/devops_HelloWorld_jenk.git"
+    sh "https://github.com/obodniak/HW_Jenk.git"
             }
         }
         stage('TEST1') { 

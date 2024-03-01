@@ -7,31 +7,31 @@ pipeline {
                 sh "sudo rm -rf HW_Jenk"
             }
         }
-       stage('CLONE') { 
+        stage('CLONE') {
             steps {
                 echo '--CLONE STAGE EXECUTION ---'
-    sh "https://github.com/obodniak/HW_Jenk.git"
+                sh "git clone https://github.com/obodniak/HW_Jenk.git"
             }
         }
-        stage('TEST1') { 
+        stage('TEST1') {
             steps {
                 echo '--TEST1 STAGE EXECUTION --'
             }
         }
-        stage('TEST2') { 
+        stage('TEST2') {
             steps {
                 echo '--TEST2 STAGE EXECUTION --'
             }
         }
-        stage('BUILD') { 
+        stage('BUILD') {
             steps {
-    echo '--BUILD STAGE EXECUTION --'
-    sh "node HW_Jenk/index.js"
+                echo '--BUILD STAGE EXECUTION --'
+                sh "node HW_Jenk/index.js"
             }
         }
-  stage('DEPLOY') { 
+        stage('DEPLOY') {
             steps {
-    echo '--Finish this PART or deploy app--'
+                echo '--Finish this PART or deploy app--'
             }
         }
     }

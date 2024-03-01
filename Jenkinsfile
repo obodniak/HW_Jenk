@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage('DELETION') {
+        stage('Delete Dir') {
             steps {
                 echo '--REMOVING REPOSITORY IF ALREADY EXIST --'
                 sh "sudo rm -rf HW_Jenk"
